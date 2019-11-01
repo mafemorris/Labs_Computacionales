@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+
 #Ejercicio 1.1
 b = np.random.rand(4,8)
 b[:,-1] = -1
@@ -36,7 +36,7 @@ x,y = generator(1000)
 x,y = np.outer(r,x), np.outer(r,y)
 a.scatter(x, y)
 
-b=plt.subplot(1,2,2,projection='3d')
+b=plt.subplot(1,2,2)
 def gene3D(n):
     theta = np.random.uniform(0,2*np.pi,n)
     phi = np.random.uniform(0,np.pi,n)
@@ -56,5 +56,5 @@ for i in np.linspace(-19,19,20):
     t=np.linspace(0,2*vy/10)
     plt.plot(x(t,i),y(t,vy),c='black')
     plt.scatter(x(t,i)[np.argmax(y(t,vy))],np.max(y(t,vy)),c='r')
-plt.show()
 plt.savefig('grafica.pdf')
+plt.show()
