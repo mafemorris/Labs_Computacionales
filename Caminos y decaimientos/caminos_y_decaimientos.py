@@ -1,11 +1,12 @@
 import numpy as np
 import matplotlib.pylab as plt
 import copy
+import random
 #5.4.2
 #Para dos dimensiones
 def paso2D(x,y):
-    dxp = (np.random.random()-0.5)*2
-    dyp = (np.random.random()-0.5)*2
+    dxp = (random.random()-0.5)*2
+    dyp = (random.random()-0.5)*2
     L = np.sqrt(dxp**2 + dyp**2)
     dx = dxp/L
     dy = dyp/L
@@ -40,15 +41,15 @@ def R2(N,xf,xi=0):
 
 k,r = caminos2D(100,paso2D) #Ya que si el numero de caminos es 31, deben ser 31**2 pasos. 
 plt.savefig('caminos.png')
-print('El valor de R^2 es de: '.format(R2(k,r)))
+print('El valor de R^2 es de: {}'.format(R2(k,r)))
 
 #Para 3 dimensiones
 
 #from mpl_toolkits.mplot3d import Axes3D
 def paso3D(x,y,z):
-    dxp = (np.random.random()-0.5)*2
-    dyp = (np.random.random()-0.5)*2
-    dzp = (np.random.random()-0.5)*2
+    dxp = (random.random()-0.5)*2
+    dyp = (random.random()-0.5)*2
+    dzp = (random.random()-0.5)*2
     L = np.sqrt(dxp**2 + dyp**2 + dzp**2)
     dx = dxp/L
     dy = dyp/L
@@ -83,16 +84,13 @@ def caminos3D(N,f):
         a = np.append(a,R2(b,c,d))
     return k, a
 
-def R2(N,xf,xi=0):
-    a = (xf-xi)**2
-    return (1/N)*sum(a)
 
-k,r = caminos3D(16,paso3D)
-print('El valor de R^2 es de: {}'.format(R2(k,r)))
+#k,r = caminos3D(16,paso3D)
+#print('El valor de R^2 es de: {}'.format(R2(k,r)))
 
 
 #En clase
-a=np.array([10,100,1000,10000])
+a=np.array([10,100])
 p1,q1 = np.array([]),np.array([])
 for i in a:
     p,q = caminos2D(i,paso2D)
@@ -124,7 +122,7 @@ a,b,c=N(100000,lam)
 d,e,f=N(100,lam)
 
 #Punto 1 Ln(N) y Ln(deltaN) con respecto al tiempo
-m = subplot(2,2,1)
+m = plt.subplot(2,2,1)
 m.plot(a,np.log(c),label='ln(N(t))')
 m.plot(a,np.log(b),label='ln($\delta$N(t))')
 m.set_xlabel('t')
@@ -133,21 +131,20 @@ m.legend()
 plt.savefig('decaeen.png')
 
 #Punto 4 son proporcionales
-g = subplot(2,2,4)
+g = plt.subplot(2,2,4)
 g.plot(np.log(b), np.log(c),label='proporcion')
 g.set_xlabel('ln($\Delta$N)')
 g.set_ylabel('ln(N)')
 g.legend()
 
 #Punto 3. Independencia del N(0)
-n = subplot(2,2,2)
+n = plt.subplot(2,2,2)
 n.plot(d,f,label='N(t) (con N(0))={}'.format(f[0]))
 n.plot(a,c,label='N(t) (con N(0))={}'.format(c[0]))
 n.set_xlabel('t')
 n.set_ylabel('Value')
 n.legend()
-
-plt.show()
+plt.savefig("ultima.png")
 
 #Punto 5. 
 #Cuando un evento es espontaneo y aleatorio, implica que va a tener cambios sin importar la influencia del ambiente, 

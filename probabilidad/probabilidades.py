@@ -1,4 +1,5 @@
-%pylab
+import numpy as np
+import random
 #Punto 1
 def prob(N):
     a = [0]*N
