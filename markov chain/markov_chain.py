@@ -1,4 +1,5 @@
-%pylab
+import numpy as np
+import matplotlib.pylab as plt
 import random
 #Algo 1.1
 def direct_pi(N): #pi para niños
