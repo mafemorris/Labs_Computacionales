@@ -1,4 +1,6 @@
-%pylab
+import numpy as np
+import matplotlib.pylab as plt
+import random
 
 #Punto 1-2, Funcion hecha con recursividad que genera los datos aleatorios hechos con el metodo
 lista = []
@@ -23,9 +25,9 @@ plt.subplot(2,2,2)
 plt.plot(range(0,256),lista)
 
 #Punto 5.
-ran =np.random.random(2**10)
+ran =np.random.random(2**3)
 plt.subplot(2,2,4)
-plt.plot(range(2**10),ran)
+plt.plot(range(2**3),ran)
 
 plt.subplot(2,2,3)
 plt.plot(ran[1::2],ran[::2],'o')
@@ -35,28 +37,27 @@ plt.savefig('random.png')
 
 #Punto6
 lisi=[]
-lisi=generador(90,int('5DEECE66D',16),int('B',16),2**10,lisi)
+lisi=generador(90,100,int('B',16),2**3,lisi)
 print(lisi,len(lisi))
-lisi= np.array(lisi)/(2**10)
-plt.plot(range(2**10),ran)
-plt.plot(range(2**10),lisi,'r')
-plt.show()
-
+lisi= np.array(lisi)/(2**3)
+plt.plot(range(2**3),ran)
+plt.plot(range(2**3),lisi,'r')
+plt.savefig('randompy.png')
 #Punto prueba
 
 def prueba(k, N, li):
     lisk = li**k
     return np.sqrt(N)*np.abs((1/N)*sum(li) - (1/(k+1)))
 k=[1,3,7]
-N=[100,10000,100000]
+N=[100,10000]
 
 def diferencia(k,N):
     listaBuena = np.random.random(N)
-    listaMala = np.array(lista[:N])/256
     aB = []
     for i in k:
         for j in N:
-            aB.append(prueba(i,j,listabuena)-prueba(i,j,listaMala))
+            listaMala = np.array(lista[:j])/256
+            aB.append(prueba(i,j,listaBuena)-prueba(i,j,listaMala))
     return aB
 diferencia(k,N)
         
